@@ -36,9 +36,32 @@ const show = async (req, res, next) => {
     }
 }
 
+// Update
+const update = async (req, res, next) => {
+    try {
+        res.json(await Person.findByIdAndUpdate(req.params.id, req.body, {new: true}));
+    } catch (err) {
+        // Send an error
+        res.status(400).json(err);
+    }
+}
+
+// Destroy
+const destroy = async (req, res, next) => {
+    try {
+        // Delete the person
+        res.json(await Person.findByIdAndDelete(req.params.id));
+    } catch (err) {
+        // Send an error
+        res.status(400).json(err);
+    }
+}
+
 // Export the controller actions
 module.exports = {
     index,
     create,
     show,
+    update,
+    delete: destroy,
 }
