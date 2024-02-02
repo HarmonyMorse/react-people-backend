@@ -4,38 +4,30 @@ const express = require('express')
 // Create a router
 const router = express.Router()
 
+// Import people controller
+const peopleCtrl = require('../controllers/people')
+
 // ROUTES
 
 // Index
 // GET /
-router.get('/', async (req, res) => {
-    res.status(200).json({ message: 'people index route' })
-});
+router.get('/', peopleCtrl.index);
 
 // Create
 // POST /
-router.post('/', async (req, res) => {
-    res.status(201).json({ message: 'people create route' })
-});
+router.post('/', peopleCtrl.create);
 
 // Show
 // GET /:id
-router.get('/:id', async (req, res) => {
-    res.status(200).json({ message: 'people show route' + req.params.id })
-});
+router.get('/:id', peopleCtrl.show);
 
 // Update
 // PUT /:id
-router.put('/:id', async (req, res) => {
-    console.log(req.body)
-    res.status(200).json({ message: 'people update route' + req.params.id })
-});
+router.put('/:id', peopleCtrl.update);
 
 // Delete
 // DELETE /:id
-router.delete('/:id', async (req, res) => {
-    res.status(200).json({ message: 'people delete route' + req.params.id })
-});
+router.delete('/:id', peopleCtrl.delete);
 
 // Export router
 module.exports = router
