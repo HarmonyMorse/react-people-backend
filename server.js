@@ -1,6 +1,8 @@
 // Initialize .env variables
 require("dotenv").config();
 
+require('./config/db.connection')
+
 // Get port and establish connection
 const { PORT } = process.env;
 
